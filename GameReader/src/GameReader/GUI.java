@@ -15,8 +15,9 @@ public class GUI {
 
     private JFrame frame;
     private JTextField textField;
-    private JLabel lblPlayer1_Name,lblPlayer2_Name,lblWinLoose,lblWinnerP1,lblWinnerP2,lblFehler,lblZoroark;
-    private JTextPane textPane1,textPane2;
+    private JLabel lblPlayer1_Name,lblPlayer2_Name,lblWinLoose,lblWinnerP1,lblWinnerP2,lblFailure,lblZoroark;
+    private JTextPane textPane1,textPane2, csvTextPane;
+    private String csvString;
 
     /**
      * Launch the application.
@@ -44,7 +45,7 @@ public class GUI {
      */
     private void initialize() {
         frame = new JFrame("ShowdownReader");
-        frame.setBounds(100, 100, 825, 380);
+        frame.setBounds(100, 100, 825, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -63,13 +64,15 @@ public class GUI {
             try {
                 Player[] game = Spielauswertung.werteAus(textField.getText());
                 frame.setTitle("ShowdownReader: '" + game[0].getNickname() + "' vs. '" + game[1].getNickname() + "'");
+                csvString = game[0].getNickname() + "," + game[1].getNickname() + ",";
 
-                lblFehler.setVisible(false);
+                lblFailure.setVisible(false);
                 lblZoroark.setVisible(false);
                 lblPlayer1_Name.setVisible(true);
                 lblPlayer2_Name.setVisible(true);
                 textPane1.setVisible(true);
                 textPane2.setVisible(true);
+                csvTextPane.setVisible(true);
                 lblWinLoose.setVisible(true);
                 lblWinnerP1.setVisible(true);
                 lblWinnerP2.setVisible(true);
@@ -94,19 +97,21 @@ public class GUI {
                 lblWinLoose.setText((6-deadP1)+":"+(6-deadP2));
 
                 if(game[0].isWinner()) {
+                    csvString = csvString + game[0].getNickname() + ",";
                     if(deadP2<6) {
                         lblWinnerP1.setText("Winner");
-                        lblWinnerP2.setText("ffd. Looser");
+                        lblWinnerP2.setText("ffd. Loser");
                     } else {
                         lblWinnerP1.setText("Winner");
-                        lblWinnerP2.setText("Looser");
+                        lblWinnerP2.setText("Loser");
                     }
                 } else {
+                    csvString = csvString + game[1].getNickname() + ",";
                     if(deadP1<6) {
-                        lblWinnerP1.setText("Looser ffd.");
+                        lblWinnerP1.setText("Loser ffd.");
                         lblWinnerP2.setText("Winner");
                     } else {
-                        lblWinnerP1.setText("Looser");
+                        lblWinnerP1.setText("Loser");
                         lblWinnerP2.setText("Winner");
                     }
                 }
@@ -132,11 +137,13 @@ public class GUI {
                                 lblZoroark.setVisible(true);
                                 break;
                         }
+                        int dead = p.isDead() ? 1 : 0;
+                        csvString = csvString + p.getPokemon() + "," + p.getKills() + ",0," + dead + ",";
                     }
                 }
-
+                csvTextPane.setText(csvString);
             } catch (ArithmeticException e) {
-                lblFehler.setVisible(true);
+                lblFailure.setVisible(true);
             }
 
         });
@@ -169,6 +176,13 @@ public class GUI {
         frame.getContentPane().add(textPane2);
         textPane2.setVisible(false);
 
+        csvTextPane = new JTextPane();
+        csvTextPane.setText("");
+        csvTextPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        csvTextPane.setBounds(10, 370, 790, 40);
+        frame.getContentPane().add(csvTextPane);
+        csvTextPane.setVisible(false);
+
         lblWinLoose = new JLabel("0:0");
         lblWinLoose.setFont(new Font("Tahoma", Font.PLAIN, 61));
         lblWinLoose.setHorizontalAlignment(SwingConstants.CENTER);
@@ -176,26 +190,26 @@ public class GUI {
         frame.getContentPane().add(lblWinLoose);
         lblWinLoose.setVisible(false);
 
-        lblWinnerP1 = new JLabel("Looser");
+        lblWinnerP1 = new JLabel("Loser");
         lblWinnerP1.setHorizontalAlignment(SwingConstants.LEFT);
         lblWinnerP1.setFont(new Font("Tahoma", Font.PLAIN, 61));
         lblWinnerP1.setBounds(10, 271, 348, 59);
         frame.getContentPane().add(lblWinnerP1);
         lblWinnerP1.setVisible(false);
 
-        lblWinnerP2 = new JLabel("Looser");
+        lblWinnerP2 = new JLabel("Loser");
         lblWinnerP2.setHorizontalAlignment(SwingConstants.RIGHT);
         lblWinnerP2.setFont(new Font("Tahoma", Font.PLAIN, 61));
         lblWinnerP2.setBounds(451, 271, 348, 59);
         frame.getContentPane().add(lblWinnerP2);
         lblWinnerP2.setVisible(false);
 
-        lblFehler = new JLabel("Fehler!");
-        lblFehler.setForeground(Color.RED);
-        lblFehler.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblFehler.setBounds(88, 11, 72, 14);
-        frame.getContentPane().add(lblFehler);
-        lblFehler.setVisible(false);
+        lblFailure = new JLabel("Failure!");
+        lblFailure.setForeground(Color.RED);
+        lblFailure.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblFailure.setBounds(88, 11, 72, 14);
+        frame.getContentPane().add(lblFailure);
+        lblFailure.setVisible(false);
 
         JLabel lblByicelimo = new JLabel("By Icelimo");
         lblByicelimo.setFont(new Font("Tahoma", Font.PLAIN, 15));

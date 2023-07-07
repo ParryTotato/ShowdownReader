@@ -23,8 +23,7 @@ public class Pokemon {
 
 
     public String DeadToString() {
-        if(dead) return "d";
-        else return "a";
+        return dead ? "d" : "a";
     }
 
     @Override
