@@ -45,7 +45,7 @@ public class GUI {
      */
     private void initialize() {
         frame = new JFrame("ShowdownReader");
-        frame.setBounds(100, 100, 825, 480);
+        frame.setBounds(100, 100, 1600, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -55,7 +55,7 @@ public class GUI {
         frame.getContentPane().add(lblLinkHere);
 
         textField = new JTextField();
-        textField.setBounds(10, 30, 690, 25);
+        textField.setBounds(10, 30, 1451, 25);
         frame.getContentPane().add(textField);
         textField.setColumns(10);
 
@@ -147,60 +147,60 @@ public class GUI {
             }
 
         });
-        btnNewButton.setBounds(710, 30, 89, 25);
+        btnNewButton.setBounds(1470, 30, 89, 25);
         frame.getContentPane().add(btnNewButton);
 
         lblPlayer1_Name = new JLabel("Player 1:");
         lblPlayer1_Name.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblPlayer1_Name.setBounds(10, 66, 371, 25);
+        lblPlayer1_Name.setBounds(10, 66, 742, 25);
         frame.getContentPane().add(lblPlayer1_Name);
         lblPlayer1_Name.setVisible(false);
 
         lblPlayer2_Name = new JLabel("Player 2:");
         lblPlayer2_Name.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblPlayer2_Name.setBounds(428, 66, 371, 25);
+        lblPlayer2_Name.setBounds(799, 66, 742, 25);
         frame.getContentPane().add(lblPlayer2_Name);
         lblPlayer2_Name.setVisible(false);
 
         textPane1 = new JTextPane();
         textPane1.setFont(new Font("Tahoma", Font.PLAIN, 17));
         textPane1.setText("");
-        textPane1.setBounds(10, 102, 371, 158);
+        textPane1.setBounds(10, 102, 742, 158);
         frame.getContentPane().add(textPane1);
         textPane1.setVisible(false);
 
         textPane2 = new JTextPane();
         textPane2.setText("");
         textPane2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        textPane2.setBounds(428, 102, 371, 158);
+        textPane2.setBounds(799, 102, 742, 158);
         frame.getContentPane().add(textPane2);
         textPane2.setVisible(false);
 
         csvTextPane = new JTextPane();
         csvTextPane.setText("");
         csvTextPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        csvTextPane.setBounds(10, 370, 790, 40);
+        csvTextPane.setBounds(10, 370, 1540, 40);
         frame.getContentPane().add(csvTextPane);
         csvTextPane.setVisible(false);
 
         lblWinLoose = new JLabel("0:0");
         lblWinLoose.setFont(new Font("Tahoma", Font.PLAIN, 61));
         lblWinLoose.setHorizontalAlignment(SwingConstants.CENTER);
-        lblWinLoose.setBounds(333, 271, 142, 59);
+        lblWinLoose.setBounds(701, 271, 142, 59);
         frame.getContentPane().add(lblWinLoose);
         lblWinLoose.setVisible(false);
 
         lblWinnerP1 = new JLabel("Loser");
         lblWinnerP1.setHorizontalAlignment(SwingConstants.LEFT);
         lblWinnerP1.setFont(new Font("Tahoma", Font.PLAIN, 61));
-        lblWinnerP1.setBounds(10, 271, 348, 59);
+        lblWinnerP1.setBounds(10, 271, 796, 59);
         frame.getContentPane().add(lblWinnerP1);
         lblWinnerP1.setVisible(false);
 
         lblWinnerP2 = new JLabel("Loser");
         lblWinnerP2.setHorizontalAlignment(SwingConstants.RIGHT);
         lblWinnerP2.setFont(new Font("Tahoma", Font.PLAIN, 61));
-        lblWinnerP2.setBounds(451, 271, 348, 59);
+        lblWinnerP2.setBounds(1200, 271, 348, 59);
         frame.getContentPane().add(lblWinnerP2);
         lblWinnerP2.setVisible(false);
 
@@ -213,7 +213,7 @@ public class GUI {
 
         JLabel lblByicelimo = new JLabel("By Icelimo");
         lblByicelimo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblByicelimo.setBounds(710, 11, 72, 14);
+        lblByicelimo.setBounds(1470, 11, 72, 14);
         frame.getContentPane().add(lblByicelimo);
 
         lblZoroark = new JLabel("Watch out, Zoroark is in a Team! It doesn't work with Zoroark!");
